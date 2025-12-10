@@ -1,0 +1,82 @@
+version: 2
+
+sources:
+  # This is the LOGICAL NAME you will use in your dbt models: {{ source('mysql_ops', 'users') }}
+  - name: seed_test
+    
+    # ⚠️ IMPORTANT: For MySQL, the 'database' is the actual database name, and 
+    # the 'schema' is often the same name or left off, but should be set if 
+    # your connection profile doesn't default to it.
+    database: dbt_test_airflow_seeds
+    schema: dbt_test_airflow_seeds
+   
+    
+    description: "Raw data replicated from the MySQL Operational Database."
+
+    # OPTIONAL: Configure a freshness check on the entire source
+    # dbt will check if any of the tables below are stale.
+    # freshness:
+    #   warn_after: {count: 6, period: hour}
+    #   error_after: {count: 12, period: hour}
+    
+    tables:
+      # A raw table named 'users' in the database
+      - name: customer
+        description: Primary table for application user accounts.
+        # This tells dbt which column to use for the freshness check
+        # loaded_at_field: _etl_loaded_at 
+        
+        columns:
+          - name: customer_id
+            description: Primary Key for the user.
+            tests:
+              - unique
+              - not_null
+              
+          - name: name
+            description: Full name of the user.
+          - name: tier
+            description: Membership tier of the user.
+          - name: updated_at
+            description: Timestamp when the user was created.
+
+      # A raw table named 'orders' in the database
+      - name: order
+        description: Transactional data for all customer orders.
+        loaded_at_field: _etl_loaded_at
+        
+        columns:
+          - name: order_id
+            description: Primary Key for the orders
+            tests:
+              - unique
+              - not_null
+              
+          - name: customer_id
+            description: id of the user.
+          - name: order_date
+            description: order date of the user.
+          - name: order_status
+            description: order status of the user.
+          - name: total_amount
+            description: total amount of the user.
+          - name: tax_rate
+            description: tax rate of the user.
+      - name: products
+        description: Product details for all items available for sale.
+        loaded_at_field: _etl_loaded_at
+        
+        columns:
+          - name: product_id
+            description: Primary Key for the products
+            tests:
+              - unique
+              - not_null
+              
+          - name: product_name
+            description: Name of the product.
+          - name: category
+            description: Category of the product.
+          - name: order_id
+            description: Associated order ID for the product.
+      

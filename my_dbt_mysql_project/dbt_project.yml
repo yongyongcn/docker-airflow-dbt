@@ -1,0 +1,43 @@
+name: 'my_dbt_mysql_project'
+version: '1.0.0'
+config-version: 2
+
+# Profile to use for connecting to the data warehouse
+profile: 'dbt_mysql_test'
+
+# Directory configurations
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+# Target directory for compiled SQL files
+target-path: "target"
+clean-targets:
+    - "target"
+    - "dbt_packages"
+
+# Global configurations that apply to all models
+models:
+  my_dbt_mysql_project:  
+    # Example configurations for different model directories
+    staging:
+      materialized: view
+       
+    intermediate:
+      materialized: ephemeral
+       
+    marts:
+      +materialized: table
+       
+seeds:
+  my_dbt_mysql_project:
+    +delimiter: ","
+    +schema: seeds
+ 
+
+ 
+
+ 

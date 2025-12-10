@@ -1,0 +1,12 @@
+
+    
+    
+    truncate table `dbt_test_airflow_seeds`.`products`;
+    -- dbt seed --
+    
+          insert into `dbt_test_airflow_seeds`.`products` (`product_id`, `product_name`, `category`) values
+          (%s,%s,%s),(%s,%s,%s),(%s,%s,%s),(%s,%s,%s),(%s,%s,%s),(%s,%s,%s)
+      
+
+;
+  

@@ -1,0 +1,5 @@
+dbt-core==1.7.4
+dbt-mysql==1.7.0
+
+ 
+ 

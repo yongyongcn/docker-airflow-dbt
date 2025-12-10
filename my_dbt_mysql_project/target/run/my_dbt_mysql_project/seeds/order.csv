@@ -1,0 +1,12 @@
+
+    
+    
+    truncate table `dbt_test_airflow_seeds`.`order`;
+    -- dbt seed --
+    
+          insert into `dbt_test_airflow_seeds`.`order` (`order_id`, `	customer_id`, `	order_date`, `	order_status`, `	total_amount`, `	tax_rate`, ` product_id`) values
+          (%s,%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s,%s,%s)
+      
+
+;
+  

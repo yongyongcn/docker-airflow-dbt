@@ -1,0 +1,15 @@
+logs/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+.vscode/
+.idea/
+.DS_Store
+*.log
+.env
+my_dbt_mysql_project/profiles.yml
+docker-compose-mysql.yml

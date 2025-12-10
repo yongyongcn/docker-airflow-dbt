@@ -1,0 +1,11 @@
+customer_id,name,tier,updated_at
+1,Alice Tan,Diamond,2025-07-01 10:00:00
+2,Bob Lee,Gold,2025-07-01 10:00:00
+3,Cheryl Lim,Silver,2025-07-01 10:00:00
+4,David Wong,Platinum,2025-07-01 10:00:00
+5,Eva Chen,Gold,2025-07-01 10:00:00 
+6,Frank Ng,Bronze,2025-10-01 10:00:00
+7,Grace Ho,Silver,2025-07-01 10:00:00
+8,Hank Goh,Gold,2025-07-01 10:00:00
+9,Ivy Lim,Platinum,2025-07-01 10:00:00
+10,Jacky Tan,Bronze,2025-07-01 10:00:00

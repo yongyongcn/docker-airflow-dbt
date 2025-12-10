@@ -1,0 +1,8 @@
+order_id,	customer_id,	order_date,	order_status,	total_amount,	tax_rate, product_id
+1001,	1,	2024-10-01,	completed,	45.99,	0.05, PROD001
+1002,	2,	2024-10-01,	pending,	12.50,	0.05, PROD002
+1003,	3,	2024-10-02,	completed,	188.00,	0.05, PROD003
+1004,	4,	2024-10-03,	completed,	7.99,	0.05, PROD004
+1005,	5,	2024-10-04,	cancelled,	50.00,	0.05, PROD005
+1006,	6,	2024-10-05,	completed,	24.15,	0.05, PROD006
+1007,   7,  2024-10-06, pending, 101.5, 0.1, PROD001
