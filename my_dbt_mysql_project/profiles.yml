@@ -1,0 +1,13 @@
+dbt_mysql_test:  
+  target: dev
+  outputs:
+    dev:
+      type: "{{ env_var('MYSQL_TYPE') }}"
+      host: "{{ env_var('MYSQL_HOST') }}"
+      user: "{{ env_var('MYSQL_USER') }}"
+      password: "{{ env_var('MYSQL_PASSWORD') }}"
+      port: 3306
+      schema: dbt_test_airflow
+      threads: 4
+      database: dbt_test_airflow
+      

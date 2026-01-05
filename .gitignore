@@ -11,5 +11,3 @@ __pycache__/
 .DS_Store
 *.log
 .env
-my_dbt_mysql_project/profiles.yml
-docker-compose-mysql.yml

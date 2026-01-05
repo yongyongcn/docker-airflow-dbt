@@ -40,6 +40,7 @@ docker compose up airflow-init
 ```bash
 
 docker compose up -d
+docker compose -f docker-compose-mysql.yml up -d
 ```
 login with: airflow@airflow
 
@@ -67,4 +68,8 @@ docker build . --tag my-company-airflow:2.0.0
 - clean volumes:
 '''
 docker-compose down --volumes --rmi all
+docker compose -f docker-compose-mysql.yml down 
 '''
+
+# add mysql_airflow_conn_test connection 
+# open airflow UI / Admin/ Connections

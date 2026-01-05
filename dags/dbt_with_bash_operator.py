@@ -4,7 +4,7 @@ import os
 from airflow.models.dag import DAG
 from airflow.providers.standard.operators.bash import BashOperator
 with DAG(
-    dag_id="zzdbt_with_bash_operator",
+    dag_id="zdbt_with_bash_operator",
     # schedule_interval="0 0 * * *",
     start_date=datetime(2024, 1, 1),
     catchup=False,
