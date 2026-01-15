@@ -21,24 +21,24 @@ sources:
     
     tables:
       # A raw table named 'users' in the database
-      - name: customer
-        description: Primary table for application user accounts.
-        # This tells dbt which column to use for the freshness check
-        # loaded_at_field: _etl_loaded_at 
+      # - name: customer
+      #   description: Primary table for application user accounts.
+      #   # This tells dbt which column to use for the freshness check
+      #   # loaded_at_field: _etl_loaded_at 
         
-        columns:
-          - name: customer_id
-            description: Primary Key for the user.
-            tests:
-              - unique
-              - not_null
+      #   columns:
+      #     - name: customer_id
+      #       description: Primary Key for the user.
+      #       tests:
+      #         - unique
+      #         - not_null
               
-          - name: name
-            description: Full name of the user.
-          - name: tier
-            description: Membership tier of the user.
-          - name: updated_at
-            description: Timestamp when the user was created.
+      #     - name: name
+      #       description: Full name of the user.
+      #     - name: tier
+      #       description: Membership tier of the user.
+      #     - name: updated_at
+      #       description: Timestamp when the user was created.
 
       # A raw table named 'orders' in the database
       - name: order

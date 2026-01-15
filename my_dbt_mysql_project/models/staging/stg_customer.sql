@@ -1,4 +1,4 @@
 
 SELECT
   *
-from {{ source('seed_test', 'customer') }}
+from {{ ref( 'customer') }}

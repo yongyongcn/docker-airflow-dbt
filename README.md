@@ -73,3 +73,13 @@ docker compose -f docker-compose-mysql.yml down
 
 # add mysql_airflow_conn_test connection 
 # open airflow UI / Admin/ Connections
+
+# how to set up gmail connection (UI)
+```
+connection ID: smtp_default
+host: smtp.gmail.com
+login:yongyongcn@gmail.com
+password: <app password>
+Port: 587
+Extra: {"starttls": true, "disable_ssl": true, "from_email":"yongyongcn@gmail.com"}
+```

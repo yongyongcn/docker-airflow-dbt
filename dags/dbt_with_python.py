@@ -8,6 +8,7 @@ from dbt.cli.main import dbtRunner, dbtRunnerResult
 # import plugins.hello as hello
 from hello import hi
 from hello import add
+from datacleaner import data_cleaner
 # from dags.hello import hi
 
 with DAG(
@@ -49,4 +50,4 @@ with DAG(
     )
     prev_task = dag.get_task(f"dbt_{cli_args[-1][0]}")
     # prev_task
-    prev_task >> hi_task >> add_one
+    prev_task >> [hi_task ,add_one]
