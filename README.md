@@ -83,3 +83,7 @@ password: <app password>
 Port: 587
 Extra: {"starttls": true, "disable_ssl": true, "from_email":"yongyongcn@gmail.com"}
 ```
+# check celery executor workers
+```
+docker compose --profile flower up -d
+```
