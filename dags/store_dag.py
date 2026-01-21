@@ -5,6 +5,7 @@ from airflow.providers.standard.operators.python import PythonOperator
 from datacleaner import data_cleaner
 from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 from airflow.providers.smtp.operators.smtp import EmailOperator
+from airflow.sensors.filesystem import FileSensor
 
 ds = datetime.strftime(datetime.now() ,'%Y-%m-%d')
 
@@ -16,10 +17,21 @@ default_args = {
     'retries': 1,
     'retry_delay': timedelta(seconds=5)
 }
-dag = DAG('store_dag', default_args = default_args, template_searchpath=['/opt/airflow/data/sql_files'],  catchup= False)
+dag = DAG('store_dag', default_args = default_args,schedule ='@daily', template_searchpath=['/opt/airflow/data/sql_files'],  catchup= False)
 
-t1 = BashOperator(task_id ='check_file_exists', bash_command ='shasum /opt/airflow/data/csv_files/raw_store_transactions.csv',retries =2,
-                  retry_delay = timedelta(seconds =15),dag=dag)
+# t1 = BashOperator(task_id ='check_file_exists', bash_command ='shasum /opt/airflow/data/csv_files/raw_store_transactions.csv',retries =2,
+#                   retry_delay = timedelta(seconds =15),dag=dag)
+
+t1 = FileSensor(
+        task_id='check_file_exists',
+        # filepath='/Users/yongyongli/Documents/code/docker-airflow-dbt/csv_files/raw_store_transactions.csv',
+        filepath = '/opt/airflow/data/csv_files/raw_store_transactions.csv',
+        fs_conn_id='fs_default',
+        poke_interval=10,
+        timeout=40,
+        soft_fail=True,
+        dag=dag
+    )
 
 t2= PythonOperator(task_id='clean_raw_csv', python_callable=data_cleaner)
 

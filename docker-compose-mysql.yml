@@ -18,5 +18,12 @@ services:
       interval: 10s
       timeout: 10s
       retries: 5
+  postgresql-dbt:
+    image: postgres:16
+    container_name: postgres-dbt
+    ports:
+     - "8088:5432"
+    env_file:
+      - .env
 volumes:
   mysql-dbt-volume:
