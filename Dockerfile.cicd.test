@@ -1,0 +1,19 @@
+From python:3.11-slim
+
+USER root
+
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+ENV UID=1000
+ENV GID=1000
+
+RUN groupadd -g ${GID} airflow && useradd -m -u ${UID} -g ${GID} airflow
+
+USER airflow
+
+WORKDIR /app
+COPY pyproject.toml uv.lock ./
+
+RUN uv sync
+ENV PYTHONPATH=/app
+ENV PATH=/app/.venv/bin:$PATH

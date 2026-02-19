@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  cicd-test:
+    container_name: cicd-test
+    build:
+      context: .
+      dockerfile: Dockerfile.cicd.test
+    ports:
+      - "8080:8080"
+    environment:
+      - PYTHONPATH=/app
+    working_dir: /app
+    command: ["sleep", "infinity"]
+    volumes:
+      - .:/app

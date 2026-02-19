@@ -1,0 +1,46 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Run daily at 00:00 UTC
+    - cron: '0 0 * * *'
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install uv
+        run: COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Run tests
+        run: pytest
+
+  build:
+    name: Build and run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build image
+        run: docker compose -f docker-compose-cicd-test.yml build --no-cache
+
+      - name: Run main.py in container
+        run: docker compose -f docker-compose-cicd-test.yml run --rm cicd-test python main.py
